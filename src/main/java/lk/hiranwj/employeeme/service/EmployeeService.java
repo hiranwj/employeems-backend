@@ -5,9 +5,12 @@ import lk.hiranwj.employeeme.entity.Employee;
 import lk.hiranwj.employeeme.repo.EmployeeRepo;
 import lk.hiranwj.employeeme.util.VarList;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -35,5 +38,12 @@ public class EmployeeService {
         }else {
             return VarList.RSP_NO_DATA_FOUND;
         }
+    }
+
+    public List<EmployeeDTO> getAllEmployees() {
+        List<Employee> employeeList = employeeRepo.findAll();
+        return modelMapper.map(employeeList, new TypeToken<ArrayList<EmployeeDTO>>(){
+
+        }.getType());
     }
 }
