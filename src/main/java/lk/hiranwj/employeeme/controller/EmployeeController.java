@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController // because of REST API
 @RequestMapping("api/v1/employee")
 public class EmployeeController {
